@@ -1,7 +1,0 @@
-www.aitoolspeak.com {
-    redir https://aitoolspeak.com{uri}
-}
-
-aitoolspeak.com {
-    reverse_proxy localhost:8000
-}
