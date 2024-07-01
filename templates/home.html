@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}Free Invoice Generator | InvoiceGenius{% endblock %}
+
+{% block meta %}
+<meta name="description" content="Create professional invoices quickly and easily with InvoiceGenius, the best free invoice generator online. No sign-up required, instant PDF download.">
+<meta name="keywords" content="free invoice generator, invoice maker, billing software, professional invoices, small business tools">
+{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="text-center py-20 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 opacity-10"></div>
+            <div class="absolute inset-0 bg-pattern opacity-5"></div>
+        </div>
+        <div class="relative z-10">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-6 animate-pulse">
+                InvoiceGenius
+            </h1>
+            <p class="text-2xl sm:text-3xl text-gray-700 mb-10 font-light">Create stunning invoices in <span class="font-semibold text-indigo-600">seconds</span></p>
+            <a href="{{ url_for('create_invoice') }}" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-4 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg inline-flex items-center">
+                <span>Create Invoice Now</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <section class="mb-32 pt-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Why Choose InvoiceGenius?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="bg-white p-8 rounded-xl shadow-lg transform transition duration-500 hover:scale-105">
+                <div class="text-indigo-600 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-center">100% Free</h3>
+                <p class="text-gray-600 text-center">No hidden fees or subscriptions. Create unlimited invoices at no cost.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg transform transition duration-500 hover:scale-105">
+                <div class="text-indigo-600 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-center">Professional Design</h3>
+                <p class="text-gray-600 text-center">Impress your clients with sleek, professionally designed invoices.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg transform transition duration-500 hover:scale-105">
+                <div class="text-indigo-600 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-center">Instant PDF Download</h3>
+                <p class="text-gray-600 text-center">Generate and download your invoice as a PDF with just one click.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-32 pt-16 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 opacity-10 rounded-3xl"></div>
+        <div class="relative z-10 p-12">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-3xl font-bold text-indigo-600">1</span>
+                    </div>
+                    <h3 class="font-semibold mb-3 text-xl">Enter Details</h3>
+                    <p class="text-gray-600">Fill in your business and client information</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-3xl font-bold text-indigo-600">2</span>
+                    </div>
+                    <h3 class="font-semibold mb-3 text-xl">Add Items</h3>
+                    <p class="text-gray-600">List your products or services with prices</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-3xl font-bold text-indigo-600">3</span>
+                    </div>
+                    <h3 class="font-semibold mb-3 text-xl">Customize</h3>
+                    <p class="text-gray-600">Add your logo and choose your preferred currency</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-3xl font-bold text-indigo-600">4</span>
+                    </div>
+                    <h3 class="font-semibold mb-3 text-xl">Download</h3>
+                    <p class="text-gray-600">Get your professional invoice as a PDF instantly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-32 pt-16 text-center">
+        <h2 class="text-4xl font-bold text-gray-900 mb-10">Start Creating Professional Invoices Now</h2>
+        <a href="{{ url_for('create_invoice') }}" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-4 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg inline-flex items-center">
+            <span>Create Your Free Invoice</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+        </a>
+    </section>
+
+    <section class="mb-32 pt-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Frequently Asked Questions</h2>
+        <div class="space-y-8">
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-semibold mb-4">Is InvoiceGenius really free?</h3>
+                <p class="text-gray-600">Yes, InvoiceGenius is 100% free to use. There are no hidden fees or subscriptions required.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-semibold mb-4">Do I need to create an account?</h3>
+                <p class="text-gray-600">No account is needed. You can start creating invoices right away without signing up.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-semibold mb-4">Can I customize the invoice design?</h3>
+                <p class="text-gray-600">While we offer a professional template, you can add your logo and choose your preferred currency to personalize your invoice.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .bg-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+</style>
+{% endblock %}

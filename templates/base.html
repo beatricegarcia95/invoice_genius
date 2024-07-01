@@ -1,0 +1,39 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoiceGenius</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-['Montserrat']">
+    <div class="container mx-auto p-4">
+        {% block content %}{% endblock %}
+    </div>
+    <script>
+        let itemCount = 1;
+
+        function addItem() {
+            itemCount++;
+            const itemsContainer = document.getElementById('items-container');
+            const newItem = document.createElement('div');
+            newItem.classList.add('flex', 'space-x-2', 'mb-2', 'items-center');
+            newItem.innerHTML = `
+                <input type="text" name="item_description_${itemCount}" placeholder="Description" class="flex-grow p-1 border rounded text-sm" required>
+                <input type="number" name="item_quantity_${itemCount}" placeholder="Qty" class="w-16 p-1 border rounded text-sm" required>
+                <input type="number" name="item_price_${itemCount}" placeholder="Price" step="0.01" class="w-20 p-1 border rounded text-sm" required>
+                <button type="button" onclick="removeItem(this)" class="bg-red-500 hover:bg-red-600 text-white w-6 h-6 rounded-full flex items-center justify-center focus:outline-none">
+                    X
+                </button>
+            `;
+            itemsContainer.appendChild(newItem);
+        }
+
+        function removeItem(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+</html>

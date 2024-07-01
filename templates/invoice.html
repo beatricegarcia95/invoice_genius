@@ -1,0 +1,109 @@
+<!-- invoice.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 text-white">
+        <h1 class="text-2xl font-bold">InvoiceGenius</h1>
+    </div>
+    
+    <form method="POST" enctype="multipart/form-data" class="p-4 space-y-4">
+        <div class="grid grid-cols-2 gap-3">
+            <input class="p-2 border rounded" name="invoice_name" type="text" placeholder="Invoice Name" required>
+            <input class="p-2 border rounded" name="invoice_number" type="text" placeholder="Invoice Number (e.g., INV-001)" required>
+            <input class="p-2 border rounded" name="date" type="date" required>
+            <input class="p-2 border rounded" name="due_date" type="date" required>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3">
+            <div>
+                <h3 class="text-sm font-semibold mb-1 text-indigo-600">Your Business</h3>
+                <input class="w-full p-2 border rounded mb-1" name="business_name" type="text" placeholder="Business Name" required>
+                <textarea class="w-full p-2 border rounded mb-1" name="business_address" placeholder="Business Address" rows="2" required></textarea>
+                <input class="w-full p-2 border rounded mb-1" name="business_phone" type="tel" placeholder="Phone Number" required>
+                <input class="w-full p-2 border rounded" name="business_email" type="email" placeholder="Business Email" required>
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold mb-1 text-indigo-600">Client Details</h3>
+                <input class="w-full p-2 border rounded mb-1" name="client_name" type="text" placeholder="Client Name" required>
+                <input class="w-full p-2 border rounded mb-1" name="client_email" type="email" placeholder="Client Email" required>
+                <textarea class="w-full p-2 border rounded" name="client_address" placeholder="Client Address" rows="2" required></textarea>
+            </div>
+        </div>
+        
+        <div>
+            <h3 class="text-sm font-semibold mb-1 text-indigo-600">Invoice Items</h3>
+            <div id="items-container">
+                <div class="flex space-x-2 mb-2 items-center">
+                    <input type="text" name="item_description_1" placeholder="Description" class="flex-grow p-1 border rounded text-sm" required>
+                    <input type="number" name="item_quantity_1" placeholder="Qty" class="w-16 p-1 border rounded text-sm" required>
+                    <input type="number" name="item_price_1" placeholder="Price" step="0.01" class="w-20 p-1 border rounded text-sm" required>
+                    <button type="button" onclick="removeItem(this)" class="bg-red-500 hover:bg-red-600 text-white w-6 h-6 rounded-full flex items-center justify-center focus:outline-none">
+                        X
+                    </button>
+                </div>
+            </div>
+            <button type="button" onclick="addItem()" class="text-sm bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-1 px-2 rounded">
+                + Add Item
+            </button>
+        </div>
+        
+        <div>
+            <h3 class="text-sm font-semibold mb-1 text-indigo-600">Payment Details</h3>
+            <div class="grid grid-cols-2 gap-2">
+                <input class="p-2 border rounded" name="bank_name" type="text" placeholder="Bank Name" required>
+                <input class="p-2 border rounded" name="account_name" type="text" placeholder="Account Name" required>
+                <input class="p-2 border rounded" name="bic" type="text" placeholder="BIC" required>
+                <input class="p-2 border rounded" name="iban" type="text" placeholder="IBAN" required>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3">
+            <div>
+                <h3 class="text-sm font-semibold mb-1 text-indigo-600">Currency</h3>
+                <select name="currency" class="w-full p-2 border rounded" required>
+                    <option value="$">USD ($) - US Dollar</option>
+                    <option value="€">EUR (€) - Euro</option>
+                    <option value="£">GBP (£) - British Pound</option>
+                    <option value="¥">JPY (¥) - Japanese Yen</option>
+                    <option value="A$">AUD (A$) - Australian Dollar</option>
+                    <option value="C$">CAD (C$) - Canadian Dollar</option>
+                    <option value="CHF">CHF (CHF) - Swiss Franc</option>
+                    <option value="¥">CNY (¥) - Chinese Yuan</option>
+                    <option value="kr">SEK (kr) - Swedish Krona</option>
+                    <option value="kr">NOK (kr) - Norwegian Krone</option>
+                    <option value="kr">DKK (kr) - Danish Krone</option>
+                    <option value="zł">PLN (zł) - Polish Złoty</option>
+                    <option value="₽">RUB (₽) - Russian Ruble</option>
+                    <option value="₹">INR (₹) - Indian Rupee</option>
+                    <option value="R$">BRL (R$) - Brazilian Real</option>
+                    <option value="R">ZAR (R) - South African Rand</option>
+                    <option value="$">MXN ($) - Mexican Peso</option>
+                    <option value="S$">SGD (S$) - Singapore Dollar</option>
+                    <option value="HK$">HKD (HK$) - Hong Kong Dollar</option>
+                    <option value="₺">TRY (₺) - Turkish Lira</option>
+                    <option value="₩">KRW (₩) - South Korean Won</option>
+                    <option value="NZ$">NZD (NZ$) - New Zealand Dollar</option>
+                    <option value="﷼">SAR (﷼) - Saudi Riyal</option>
+                    <option value="د.إ">AED (د.إ) - United Arab Emirates Dirham</option>
+                </select>
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold mb-1 text-indigo-600">Tax Rate (%)</h3>
+                <input class="w-full p-2 border rounded" name="tax_rate" type="number" step="0.01" placeholder="Tax Rate" required>
+            </div>
+        </div>
+        
+        <div>
+            <h3 class="text-sm font-semibold mb-1 text-indigo-600">Company Logo</h3>
+            <input type="file" name="logo" accept="image/*" class="w-full p-2 border rounded">
+        </div>
+        
+        <div class="text-center">
+            <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105" type="submit">
+                Generate Invoice
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
